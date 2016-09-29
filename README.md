@@ -1,85 +1,20 @@
-# The Quartz guide to bad data
+# The __Abridged__ Quartz guide to bad data
 
 **An exhaustive reference to problems seen in real-world data along with suggestions on how to resolve them.**
 
-As a reporter your world is full of data. And those data are full of problems. This guide presents thorough descriptions and suggested solutions to many of the kinds of problems that you will encounter when working with data.
+***Reduced for eventual mapping onto an A0 poster and to remove references presuming the target audience is necessarily a journalist working with external data. Index removed and links modified for print. ***
 
-Most of these problems can be solved. Some of them can't be solved and that means you should not use the data. Others can't be solved, but with precautions you can continue using the data. In order to allow for these ambiguities, this guide is organized by who is best equipped to solve the problem: you, your source, an expert, etc. In the description of each problem you may also find suggestions for what to do if that person can't help you.
 
-You cannot possibly review every dataset you encounter for all of these problems. If you try to do that you will never get anything published. However, by familiarizing yourself with the kinds of issues you are likely to encounter you will have a better chance of identifying an issue before it causes you to make a mistake.
+The world is full of data. And those data are full of problems. This guide presents thorough descriptions and suggested solutions to many of the kinds of problems that you will encounter when working with data.
 
-If you have questions about this guide please email [Chris](mailto:c@qz.com). Good luck!
+Most of these problems can be solved. Some of them can't be solved and that means you should not use the data. Others can't be solved, but with precautions you can continue using the data. 
+
+You cannot possibly review every dataset you encounter for all of these problems. If you try to do that you will never get anything done. However, by familiarizing yourself with the kinds of issues you are likely to encounter you will have a better chance of identifying an issue before it causes you to make a mistake.
+
+If you have questions about the original Quartz guide please email [Chris](mailto:c@qz.com). Good luck!
 
 This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International License](http://creativecommons.org/licenses/by-nc/4.0/). Send your pull requests!
 
-# Translations
-
-* [Chinese](http://cn.gijn.org/2016/01/10/quartz%E5%9D%8F%E6%95%B0%E6%8D%AE%E6%8C%87%E5%8D%97%E7%B2%BE%E9%80%89%EF%BC%9A%E5%A4%84%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%96%B9%E5%BC%8F%E4%B8%80%E8%A7%88/) (partial)
-* [Spanish](http://es.schoolofdata.org/guia-quartz/)
-
-Want to translate this guide into your language? Go ahead! Email [Chris](mailto:c@qz.com) to have your translation added here.
-
-# Index
-
-## Issues that your source should solve
-
-* [Values are missing](#values-are-missing)
-* [Zeros replace missing values](#zeros-replace-missing-values)
-* [Data are missing you know should be there](#data-are-missing-you-know-should-be-there)
-* [Rows or values are duplicated](#rows-or-values-are-duplicated)
-* [Spelling is inconsistent](#spelling-is-inconsistent)
-* [Name order is inconsistent](#name-order-is-inconsistent)
-* [Date formats are inconsistent](#date-formats-are-inconsistent)
-* [Units are not specified](#units-are-not-specified)
-* [Categories are badly chosen](#categories-are-badly-chosen)
-* [Field names are ambiguous](#field-names-are-ambiguous)
-* [Provenance is not documented](#provenance-is-not-documented)
-* [Suspicious values are present](#suspicious-values-are-present)
-* [Data are too coarse](#data-are-too-coarse)
-* [Totals differ from published aggregates](#totals-differ-from-published-aggregates)
-* [Spreadsheet has 65536 rows](#spreadsheet-has-65536-rows)
-* [Spreadsheet has dates in 1900, 1904, 1969, or 1970](#spreadsheet-has-dates-in-1900-1904-1969-or-1970)
-* [Text has been converted to numbers](#text-has-been-converted-to-numbers)
-* [Numbers have been stored as text](#numbers-have-been-stored-as-text)
-
-## Issues that you should solve
-
-* [Text is garbled](#text-is-garbled)
-* [Line endings are garbled](#line-endings-are-garbled)
-* [Data are in a PDF](#data-are-in-a-pdf)
-* [Data are too granular](#data-are-too-granular)
-* [Data were entered by humans](#data-were-entered-by-humans)
-* [Data are intermingled with formatting and annotations](#data-are-intermingled-with-formatting-and-annotations)
-* [Aggregations were computed on missing values](#aggregations-were-computed-on-missing-values)
-* [Sample is not random](#sample-is-not-random)
-* [Margin-of-error is too large](#margin-of-error-is-too-large)
-* [Margin-of-error is unknown](#margin-of-error-is-unknown)
-* [Sample is biased](#sample-is-biased)
-* [Data have been manually edited](#data-have-been-manually-edited)
-* [Inflation skews the data](#inflation-skews-the-data)
-* [Natural/seasonal variation skews the data](#naturalseasonal-variation-skews-the-data)
-* [Timeframe has been manipulated](#timeframe-has-been-manipulated)
-* [Frame of reference has been manipulated](#frame-of-reference-has-been-manipulated)
-
-## Issues a third-party expert should help you solve
-
-* [Author is untrustworthy](#author-is-untrustworthy)
-* [Collection process is opaque](#collection-process-is-opaque)
-* [Data assert unrealistic precision](#data-assert-unrealistic-precision)
-* [There are inexplicable outliers](#there-are-inexplicable-outliers)
-* [An index masks underlying variation](#an-index-masks-underlying-variation)
-* [Results have been p-hacked](#results-have-been-p-hacked)
-* [Benford's Law fails](#benfords-law-fails)
-* [Too good to be true](#too-good-to-be-true)
-
-## Issues a programmer should help you solve
-
-* [Data are aggregated to the wrong categories or geographies](#data-are-aggregated-to-the-wrong-categories-or-geographies)
-* [Data are in scanned documents](#data-are-in-scanned-documents)
-
-# Detailed list of all problems
-
-## Issues that your source should solve
 
 ### Values are missing
 
@@ -233,8 +168,6 @@ Not all numerals are numbers. For instance, the US Census Bureau uses "FIPS code
 
 When working with spreadsheets, numbers may be stored as text with unwanted formatting. This often happens when a spreadsheet is optimized for presenting data rather than making it available for re-use. For example, instead of representing a million dollars with the number "1000000" a cell might contain the string "1,000,000" or "1 000 000" or "USD 1,000,000" with the formatting of commas, units and spaces entered as characters. Excel can take care of some simple cases with built-in functions, but you'll often need to use formulas to strip out characters until cells are clean enough to be recognized as numbers. Good practice is to store numbers without formatting and to include supporting information in column names or metadata.
 
-## Issues that you should solve
-
 ### Text is garbled
 
 All letters are represented by computers as numbers. Encoding problems are issues that arise when text is represented by a specific set of numbers (called an "encoding") and you don't know what it is. This leads to a phenomenon called [mojibake](https://en.wikipedia.org/wiki/Mojibake) where the text in your data looks like garbage, or like this: ���.
@@ -370,7 +303,6 @@ See also:
 
 * [Timeframe has been manipulated](#timeframe-has-been-manipulated)
 
-## Issues a third-party expert should help you solve
 
 ### Author is untrustworthy
 
@@ -425,8 +357,6 @@ See also:
 There is no global dataset of public opinion. Nobody knows the exact number of people living in Siberia. Crime statistics aren't comparable across borders. The US government is not going to tell you how much fissile material it keeps on hand.
 
 Beware any data that purport to represent something that you could not possibly know. It's not data. It's somebody's estimate and it's probably wrong. Then again... it could be a story, so ask an expert to check it out.
-
-## Issues a programmer should help you solve
 
 ### Data are aggregated to the wrong categories or geographies
 
