@@ -1,8 +1,8 @@
-# The __Abridged__ Quartz guide to bad data
+# The __Remixed__ Quartz guide to bad data
 
 **An exhaustive reference to problems seen in real-world data along with suggestions on how to resolve them.**
 
-***Reduced for eventual mapping onto an A0 poster and to remove references presuming the target audience is necessarily a journalist working with external data. Index removed and links modified for print. ***
+*Reduced for eventual mapping onto an A0 poster and to remove references presuming the target audience is necessarily a journalist working with external data. Index removed and links modified for print.*
 
 
 The world is full of data. And those data are full of problems. This guide presents thorough descriptions and suggested solutions to many of the kinds of problems that you will encounter when working with data.
@@ -20,11 +20,11 @@ This work is licensed under a [Creative Commons Attribution-NonCommercial 4.0 In
 
 Beware blank or "null" values in any dataset unless you are certain you know what they mean. If the data are annual, was the value for that year never collected? If it is a survey, did a respondent refuse to answer the question?
 
-Any time you're working with data that has missing values you should ask yourself: "Do I know what the absence of this value means?" If the answer is no, you should ask your source.
+Any time you're working with data that has missing values you should ask yourself: "Do I know what the absence of this value means?"
 
 ### Zeros replace missing values
 
-Worse than a missing value is when an arbitrary value is used instead. This can be the result of a human not thinking through the implications or it can happen as the result of automated processes that simply don't know how to handle null values. In any case, if you see zeros in a series of numbers you should ask yourself if those values are really the number `0` or if they instead means "nothing". (`-1` is also sometimes used this way.) If you aren't sure, ask your source.
+Worse than a missing value is when an arbitrary value is used instead. This can be the result of a human not thinking through the implications or it can happen as the result of automated processes that simply don't know how to handle null values. In any case, if you see zeros in a series of numbers you should ask yourself if those values are really the number `0` or if they instead means "nothing". (`-1` is also sometimes used this way.) 
 
 The same caution should be exercised for other non-numerical values where a `0` may be represented in another way. For example a false `0` value for a date is often displayed as `1970-01-01T00:00:00Z` or `1969-12-31T24:59:59Z` which is the [Unix epoch for timestamps](https://en.wikipedia.org/wiki/Unix_time#Encoding_time_as_a_number). A false `0` for a location might be represented as `0°00'00.0"N+0°00'00.0"E` or simply `0°N 0°E` which is a point in the Atlantic Ocean just south of Ghana often referred to as [Null Island](https://en.wikipedia.org/wiki/Null_Island).
 
@@ -35,11 +35,11 @@ See also:
 
 ### Data are missing you know should be there
 
-Sometimes data are missing and you can't tell from the dataset itself, but you can still know because you know what the data purports to be about. If you have a dataset covering the United States then you can check to ensure all 50 states represented. (And don't forget about [the territories](https://en.wikipedia.org/wiki/Territories_of_the_United_States)—50 isn't the right number if the dataset includes Puerto Rico.) If you're dealing with a dataset of baseball players make sure it has the number of teams you expect. Verify that a few players who you know are included. Trust your intuition if something seems to missing and double-check with your source. The universe of your data might be smaller than you think.
+Sometimes data are missing and you can't tell from the dataset itself, but you can still know because you know what the data purports to be about. If you have a dataset covering the United States then you can check to ensure all 50 states represented. (And don't forget about [the territories](https://en.wikipedia.org/wiki/Territories_of_the_United_States)—50 isn't the right number if the dataset includes Puerto Rico.) If you're dealing with a dataset of baseball players make sure it has the number of teams you expect. Verify that a few players who you know are included. Trust your intuition if something seems to missing and double-check with the source. The universe of your data might be smaller than you think.
 
 ### Rows or values are duplicated
 
-If the same row appears in your dataset more than once you should find out why. Sometimes it need not be a whole row. Some campaign finance data include "amendments" that use the same unique identifiers as the original transaction. If you didn't know that then any calculations you did with the data would be wrong. If something seems like it should be unique verify that it is. If you discover that it isn't, ask your source why.
+If the same row appears in your dataset more than once you should find out why. Sometimes it need not be a whole row. Some campaign finance data include "amendments" that use the same unique identifiers as the original transaction. If you didn't know that then any calculations you did with the data would be wrong. If something seems like it should be unique verify that it is. 
 
 ### Spelling is inconsistent
 
@@ -162,7 +162,7 @@ Many databases and applications will often generate a date of `1970-01-01T00:00:
 
 ### Text has been converted to numbers
 
-Not all numerals are numbers. For instance, the US Census Bureau uses "FIPS codes" to identify every place in the United States. These codes are of various lengths and are numeric. However, they are *not* numbers. `037` is the FIPS code for Los Angeles County. It is not the number `37`. The numerals `37` are, however, a valid FIPS code: for North Carolina. Excel and other spreadsheets will often make the mistake of assuming numerals are numbers and stripping the leading zeros. This can cause all kinds of problems if you try to convert it to another file format or merge it with another dataset. Watch out for data where this has happened before it was given to you.
+Not all numerals are numbers. For instance, the US Census Bureau uses "FIPS codes" to identify every place in the United States. These codes are of various lengths and are numeric. However, they are *not* numbers. `037` is the FIPS code for Los Angeles County. It is not the number `37`. The numerals `37` are, however, a valid FIPS code: for North Carolina. Excel and other spreadsheets will often make the mistake of assuming numerals are numbers and stripping the leading zeros. This can cause all kinds of problems if you try to convert it to another file format or merge it with another dataset. 
 
 ### Numbers have been stored as text
 
@@ -172,7 +172,7 @@ When working with spreadsheets, numbers may be stored as text with unwanted form
 
 All letters are represented by computers as numbers. Encoding problems are issues that arise when text is represented by a specific set of numbers (called an "encoding") and you don't know what it is. This leads to a phenomenon called [mojibake](https://en.wikipedia.org/wiki/Mojibake) where the text in your data looks like garbage, or like this: ���.
 
-In the vast majority of cases your text editor or spreadsheet application will figure out the correct encoding, however, if it screws it up you could publishing somebody's name with a weird character in the middle. Your source should be able to tell you what encoding your data are in. In the event they can't there are ways of guessing that are about fairly reliable. Ask a programmer.
+In the vast majority of cases your text editor or spreadsheet application will figure out the correct encoding, however, if it screws it up you could publishing somebody's name with a weird character in the middle. Your source should be able to tell you what encoding your data are in. In the event they can't there are ways of guessing that are about fairly reliable. .
 
 ### Line endings are garbled
 
@@ -360,7 +360,7 @@ Beware any data that purport to represent something that you could not possibly 
 
 ### Data are aggregated to the wrong categories or geographies
 
-Sometimes your data are at about the right level of detail (neither [too coarse](#data-are-too-coarse) nor [too granular](#data-are-too-granular)), but they have been aggregated to different grouping than you want. This classic example of this is data that are aggregated by zip codes that you would prefer to have by city neighborhoods. In many cases this is an impossible problem to solve without getting more granular data from your source, but sometimes the data can be proportionally mapped from one group to another. This must be undertaken only with careful understanding of the [margin-of-error](#margin-of-error-is-too-large) that may be introduced in the process. If you've got data aggregated to the wrong groups, ask a programmer if it is possible to re-aggregate it.
+Sometimes your data are at about the right level of detail (neither [too coarse](#data-are-too-coarse) nor [too granular](#data-are-too-granular)), but they have been aggregated to different grouping than you want. This classic example of this is data that are aggregated by zip codes that you would prefer to have by city neighborhoods. In many cases this is an impossible problem to solve without getting more granular data from your source, but sometimes the data can be proportionally mapped from one group to another. This must be undertaken only with careful understanding of the [margin-of-error](#margin-of-error-is-too-large) that may be introduced in the process. If you've got data aggregated to the wrong groups, find out if it is possible to re-aggregate it.
 
 See also:
 
@@ -374,7 +374,7 @@ Thanks to FOIA laws it is frequently the case that governments are required to g
 
 It is possible to extract text from images and turn it back into data. This is done through a process called optical-character recognition (OCR). Modern OCR can often be almost 100% accurate, but it very much depends on the nature of the document. Anytime you use OCR to extract data you will want to have a process for validating the results match the original.
 
-There are many websites you can upload a document to for OCR, but there are also free tools that a programmer may be able to tune for your specific documents. Ask them what the best strategy is for the particular documents you have.
+There are many websites you can upload a document to for OCR, but there are also free tools that a programmer may be able to tune for specific documents. .
 
 See also:
 
